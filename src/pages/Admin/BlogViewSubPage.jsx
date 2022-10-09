@@ -99,7 +99,17 @@ const BlogViewSubPage = () => {
                 padding: "5px 36px",
               }}
               variant="contained"
-              onClick={() => navigate('/blog/update')}
+              onClick={() =>
+                navigate("/blog/update", {
+                  state: {
+                    id: blogData.id,
+                    blogID: blogData.blogID,
+                    title: blogData.title,
+                    content: blogData.content,
+                    image: blogData.image,
+                  },
+                })
+              }
             >
               edit
             </Button>

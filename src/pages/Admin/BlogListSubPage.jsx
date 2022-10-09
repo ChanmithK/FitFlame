@@ -110,6 +110,7 @@ const BlogListSubPage = () => {
                   onClick={() => {
                     navigate("/blog/view", {
                       state: {
+                        id:row.id,
                         blogID: row.blogID,
                         title: row.title,
                         content: row.content,
