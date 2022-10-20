@@ -19,21 +19,40 @@ import LoadingSpinner from "../../components/Admin/LoadingSpinner";
 const AdminUserListSubPage = () => {
   const navigate = useNavigate();
   const [rows, setRows] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    const getBlogs = async () => {
+    const getUsers = async () => {
       const filterdData = query(
         collection(db, "users"),
         where("name", "!=", "null")
       );
       const querySnapshot = await getDocs(filterdData);
-      setRows(querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      let usersList = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setUserData(usersList);
+      setRows(usersList);
       setIsLoading(false);
     };
-    getBlogs();
+    getUsers();
   }, []);
+
+  const searchUser = (e) => {
+    setSearchKey(e.target.value);
+
+    setRows(
+      userData.filter(
+        (row) =>
+          row.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          row.role.toLowerCase().includes(e.target.value.toLowerCase())
+      )
+    );
+  };
 
   const renderPage = (
     <Box
@@ -49,16 +68,18 @@ const AdminUserListSubPage = () => {
         justifyContent="flex-start"
         alignItems="baseline"
       >
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <h1>Users</h1>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <TextField
             fullWidth
-            label="Title"
             id="Title"
+            placeholder="Search"
             size="small"
-            sx={{ textTransform: "capitalize" }}
+            value={searchKey}
+            onInput={(e) => searchUser(e)}
+            sx={{ textTransform: "capitalize", my: "-5px", width: "300px" }}
           />
         </Grid>
         <Grid
@@ -74,8 +95,16 @@ const AdminUserListSubPage = () => {
             style={{
               backgroundColor: "#3C56F5",
               padding: "5px 36px",
+              mx: "5px",
             }}
             variant="contained"
+            onClick={() =>
+              navigate("/admin/report", {
+                state: {
+                  data: userData,
+                },
+              })
+            }
           >
             Report
           </Button>

@@ -1,9 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Grid, Button, TextField } from "@mui/material";
-// import demoImage from "../../99.jpg";
 import CloseIcon from "@mui/icons-material/Close";
+import { db, storage } from "../../firebase-config";
+import { doc, updateDoc, collection } from "firebase/firestore";
+import { useLocation, useNavigate } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const BlogUpdateSubPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setTitle(location.state.title);
+    setContent(location.state.content);
+    console.log(location.state.id);
+  }, []);
+
+  const updateBlog = async () => {
+    confirmAlert({
+      message: "Are you sure to update your blog ?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: async () => {
+            try {
+              setIsLoading(true);
+              updateDoc(doc(db, "blogs", location.state.id), {
+                title: title,
+                content: content,
+              }).then(() => navigate("/admin/blog"));
+            } catch (err) {
+              alert(err);
+            }
+          },
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
+
   return (
     <Box
       sx={{
@@ -15,31 +57,27 @@ const BlogUpdateSubPage = () => {
         fullWidth
         label="Title"
         id="Title"
-        defaultValue=""
+        value={title}
+        type="text"
         onInput={(e) => {
           e.target.value = e.target.value.slice(0, 70);
+          setTitle(e.target.value);
+          console.log(title);
         }}
       />
       <TextField
         fullWidth
         sx={{ my: "20px" }}
         multiline
-        rows={8}
+        rows={15}
         label="Content"
         id="Content"
+        value={content}
+        onInput={(e) => {
+          setContent(e.target.value);
+        }}
       />
 
-      <Box
-        sx={{
-          height: "160px",
-          width: "160px",
-          borderRadius: 1,
-          overflow: "hidden",
-        }}
-      >
-        <CloseIcon sx={{ position: "absolute", m: "5px auto auto 130px" }} />
-        {/* <img src={demoImage} alt="demo" style={{ height: "inherit" }} /> */}
-      </Box>
       <Grid container spacing={2} sx={{ mt: "5px" }}>
         <Grid item>
           <Button
@@ -48,6 +86,7 @@ const BlogUpdateSubPage = () => {
               padding: "5px 36px",
             }}
             variant="contained"
+            onClick={() => navigate(-1)}
           >
             Cancel
           </Button>
@@ -59,6 +98,9 @@ const BlogUpdateSubPage = () => {
               padding: "5px 36px",
             }}
             variant="contained"
+            onClick={() => {
+              updateBlog();
+            }}
           >
             Update
           </Button>
