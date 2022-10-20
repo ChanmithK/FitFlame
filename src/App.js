@@ -42,8 +42,8 @@ import AdminUserList from "./pages/Admin/MainPages/AdminUserList";
 import BlogUpdate from "./pages/Admin/MainPages/BlogUpdate";
 import BlogViewAdmin from "./pages/Admin/MainPages/BlogView";
 import BlogCreate from "./pages/Admin/MainPages/BlogCreate";
+import Report from "./pages/Admin/MainPages/Report";
 import WorkoutScheduleReport from "./pages/Client/Main-Pages/Workout-Schedule-Report";
-
 
 export function App() {
   const dispatch = useDispatch();
@@ -292,17 +292,18 @@ export function App() {
           />
 
           <Route
-            path="/blog"
+            path="/admin/blog"
             element={
               <ProtectedRoute>
                 <BlogList />
               </ProtectedRoute>
             }
           />
-          <Route path="/blog/create" element={<BlogCreate />} />
-          <Route path="/blog/view" element={<BlogViewAdmin />} />
-          <Route path="/blog/update" element={<BlogUpdate />} />
+          <Route path="/admin/blog/create" element={<BlogCreate />} />
+          <Route path="/admin/blog/view" element={<BlogViewAdmin />} />
+          <Route path="/admin/blog/update" element={<BlogUpdate />} />
           <Route path="/admin/users" element={<AdminUserList />} />
+          <Route path="/admin/report" element={<Report />} />
         </Routes>
       </UserAuthContextProvider>
     </div>

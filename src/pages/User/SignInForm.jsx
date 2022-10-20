@@ -23,7 +23,7 @@ function SignInForm() {
 
   const ErrMsg = (errMsg) => {
     toast.error(errMsg, {
-      position: 'top-right',
+      position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -56,33 +56,33 @@ function SignInForm() {
     }
   };
   return (
-    <Grid container component='main' sx={{ height: '100vh' }}>
+    <Grid container component="main" sx={{ height: "100vh" }}>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <ToastContainer />
         <Box
           sx={{
             my: 8,
             mx: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ mt: 8, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ mt: 8, bgcolor: "secondary.main" }}>
             <AccountCircleIcon />
           </Avatar>
-          <Typography sx={{ mt: 2 }} component='h1' variant='h5'>
+          <Typography sx={{ mt: 2 }} component="h1" variant="h5">
             Sign in
           </Typography>
           <Box noValidate sx={{ mt: 4 }}>
             <TextField
-              autoComplete='email'
+              autoComplete="email"
               required
               fullWidth
-              id='email'
-              type='email'
-              label='Email'
-              name='email'
+              id="email"
+              type="email"
+              label="Email"
+              name="email"
               autoFocus
               onChange={(event) => {
                 setEmail(event.target.value);
@@ -92,31 +92,31 @@ function SignInForm() {
               sx={{ mt: 4 }}
               required
               fullWidth
-              name='password'
-              label='Password'
-              type='password'
-              id='password'
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
               onChange={(event) => {
                 setPassword(event.target.value);
               }}
             />
             <Button
               onClick={handleSubmit}
-              type='submit'
+              type="submit"
               fullWidth
-              variant='contained'
+              variant="contained"
               sx={{ mt: 5, mb: 2 }}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href='/reset-password' variant='body2'>
+                <Link href="/reset-password" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href='/signUp' variant='body2'>
+                <Link href="/signUp" variant="body2">
                   Don't have an account? Sign Up
                 </Link>
               </Grid>
@@ -130,14 +130,14 @@ function SignInForm() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: 'url(https://source.unsplash.com/_XXo6KBedik)',
-          backgroundRepeat: 'no-repeat',
+          backgroundImage: "url(https://source.unsplash.com/_XXo6KBedik)",
+          backgroundRepeat: "no-repeat",
           backgroundColor: (t) =>
-            t.palette.mode === 'light'
+            t.palette.mode === "light"
               ? t.palette.grey[50]
               : t.palette.grey[900],
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
     </Grid>
