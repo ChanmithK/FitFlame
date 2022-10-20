@@ -1,3 +1,4 @@
+
 import { CssBaseline } from "@mui/material";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Blogs from "./pages/Client/Main-Pages/Blogs";
@@ -21,6 +22,7 @@ import PasswordReset from "./pages/User/Main-Pages/PasswordReset";
 import { UserAuthContextProvider } from "./Context/UserAuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+
 import TrainerClients from "./pages/Trainer/MainPages/Clients";
 import TrainerOrders from "./pages/Trainer/MainPages/Orders";
 import TrainerPackages from "./pages/Trainer/MainPages/Packages";
@@ -34,12 +36,14 @@ import TrainerCreatepackage from "./pages/Trainer/MainPages/Createpackage";
 import TrainerUpdatePackage from "./pages/Trainer/MainPages/UpdatePackage";
 import TrainerClientDetails from "./pages/Trainer/MainPages/ClientDetails";
 
+
 import BlogList from "./pages/Admin/MainPages/BlogList";
 import AdminUserList from "./pages/Admin/MainPages/AdminUserList";
 import BlogUpdate from "./pages/Admin/MainPages/BlogUpdate";
 import BlogViewAdmin from "./pages/Admin/MainPages/BlogView";
 import BlogCreate from "./pages/Admin/MainPages/BlogCreate";
 import Report from "./pages/Admin/MainPages/Report";
+import WorkoutScheduleReport from "./pages/Client/Main-Pages/Workout-Schedule-Report";
 
 export function App() {
   const dispatch = useDispatch();
@@ -158,6 +162,10 @@ export function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path='/client-workout-schedule-report'
+            element={<WorkoutScheduleReport />}
+          />
 
           {/* Chamod */}
 
@@ -166,32 +174,121 @@ export function App() {
           <Route path="/reset-password" element={<PasswordReset />} />
 
           {/* Rasanga */}
-          <Route path="/trainer/clients" element={<TrainerClients />} />
+          {/* <Route path="/trainer/clients" element={<TrainerClients />} /> */}
+          <Route
+            path="/trainer/clients"
+            element={
+              <ProtectedRoute>
+                <TrainerClients />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/trainer/clients"
+            element={
+              <ProtectedRoute>
+                <TrainerClients />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/trainer/clients/:id"
-            element={<TrainerClientDetails />}
+            element={
+              <ProtectedRoute>
+                <TrainerClientDetails />
+              </ProtectedRoute>
+            }
           />
-          <Route path="/trainer/orders" element={<TrainerOrders />} />
-          <Route path="/trainer/packages" element={<TrainerPackages />} />
+
+          <Route
+            path="/trainer/orders"
+            element={
+              <ProtectedRoute>
+                <TrainerOrders />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/trainer/packages"
+            element={
+              <ProtectedRoute>
+                <TrainerPackages />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/trainer/orders/:id"
-            element={<TrainerOrderDetaills />}
+            element={
+              <ProtectedRoute>
+                <TrainerOrderDetaills />
+              </ProtectedRoute>
+            }
           />
-          <Route path="/trainer/create-plan/:id" element={<TrainerPlan />} />
-          <Route path="/trainer/plan/:id" element={<TrainerViewPlan />} />
-          <Route path="/trainer/about" element={<TrainerAboutProfile />} />
-          <Route path="/trainer/profile" element={<TrainerProfile />} />
+
+          <Route
+            path="/trainer/create-plan/:id"
+            element={
+              <ProtectedRoute>
+                <TrainerPlan />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/trainer/plan/:id"
+            element={
+              <ProtectedRoute>
+                <TrainerViewPlan />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/trainer/about"
+            element={
+              <ProtectedRoute>
+                <TrainerAboutProfile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/trainer/profile"
+            element={
+              <ProtectedRoute>
+                <TrainerProfile />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/trainer/profile-edit"
-            element={<TrainerProfileEdit />}
+            element={
+              <ProtectedRoute>
+                <TrainerProfileEdit />
+              </ProtectedRoute>
+            }
           />
+
           <Route
             path="/trainer/package-create"
-            element={<TrainerCreatepackage />}
+            element={
+              <ProtectedRoute>
+                <TrainerCreatepackage />
+              </ProtectedRoute>
+            }
           />
+
           <Route
             path="/trainer/package-edit"
-            element={<TrainerUpdatePackage />}
+            element={
+              <ProtectedRoute>
+                <TrainerUpdatePackage />
+              </ProtectedRoute>
+            }
           />
 
           <Route
