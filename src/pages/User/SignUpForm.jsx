@@ -80,6 +80,23 @@ function SignUpForm() {
     }
   }
 
+  const [message, setMessage] = useState('')
+  const [error, setError] = useState(null)
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email)
+  }
+
+  const handleChange = (event) => {
+    if (!isValidEmail(event.target.value)) {
+      setError('Email is invalid')
+    } else {
+      setError(null)
+    }
+
+    setMessage(event.target.value)
+  }
+
   return (
     <Grid container component='main' sx={{ height: '100vh' }}>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -114,7 +131,7 @@ function SignUpForm() {
                   }}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} onChange={handleChange}>
                 <TextField
                   required
                   name='email'
@@ -124,7 +141,9 @@ function SignUpForm() {
                   onChange={(event) => {
                     setEmail(event.target.value)
                   }}
+                  value={message}
                 />
+                {error && <p1 style={{ color: 'red' }}>{error}</p1>}
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
