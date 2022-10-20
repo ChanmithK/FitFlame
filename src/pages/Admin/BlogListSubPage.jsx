@@ -108,8 +108,9 @@ const BlogListSubPage = () => {
                 <TableCell
                   scope="row"
                   onClick={() => {
-                    navigate("/blog/view", {
+                    navigate("/admin/blog/view", {
                       state: {
+                        id: row.id,
                         blogID: row.blogID,
                         title: row.title,
                         content: row.content,
@@ -164,7 +165,7 @@ const BlogListSubPage = () => {
           padding: "5px 36px",
         }}
         onClick={() => {
-          navigate("/blog/create");
+          navigate("/admin/blog/create");
         }}
       >
         Create New Blog

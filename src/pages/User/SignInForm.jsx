@@ -1,23 +1,23 @@
-import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import Avatar from "@mui/material/Avatar";
-import { useUserAuth } from "../../Context/UserAuthContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Avatar from '@mui/material/Avatar';
+import { useUserAuth } from '../../Context/UserAuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignInForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const { Login } = useUserAuth();
   const navigate = useNavigate();
 
@@ -34,21 +34,21 @@ function SignInForm() {
   };
 
   const handleSubmit = async (e) => {
-    if (email === "") {
-      ErrMsg("Fill the required fields!");
-    } else if (password === "") {
-      ErrMsg("Fill the required fields!");
+    if (email === '') {
+      ErrMsg('Fill the required fields!');
+    } else if (password === '') {
+      ErrMsg('Fill the required fields!');
     } else {
       try {
         await Login(email, password);
-        navigate("/blogs");
+        navigate('/trainer/clients');
       } catch (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
-        if (errorCode === "auth/wrong-password") {
-          ErrMsg("The password you entered is wrong.");
-        } else if (errorCode === "auth/user-not-found") {
-          ErrMsg("The entered email doesn`t have an email");
+        if (errorCode === 'auth/wrong-password') {
+          ErrMsg('The password you entered is wrong.');
+        } else if (errorCode === 'auth/user-not-found') {
+          ErrMsg('The entered email doesn`t have an email');
         } else {
           ErrMsg(errorMessage);
         }
