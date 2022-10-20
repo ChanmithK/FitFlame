@@ -49,10 +49,7 @@ function ClientProfileUpdateSub() {
   const updateProfile = async () => {
     const cleintDoc = doc(db, 'users', 'hu4UOB1AzEbinu2bEtsJ')
 
-    if (selected === '' && imagePreview === null) {
-      ErrMsg('Please choose a cover image')
-    } else if (selected === '' && imagePreview !== '') {
-      /* this section handles if the user does not modify the image but other text fields*/
+    if (selected === '' && imagePreview !== '') {
       if (Name === '') {
         ErrMsg('Please fill the required fields!')
       } else if (Email === '') {
@@ -74,32 +71,28 @@ function ClientProfileUpdateSub() {
     } else {
       //handle image upload and then update the document
       const imageRef = ref(storage, `cleintProfile/${selected.name}`)
-      if (selected === '') {
-        ErrMsg('Cover image must be added!')
-      } else {
-        uploadBytes(imageRef, selected)
-          .then(() => {
-            getDownloadURL(imageRef).then((url) => {
-              updateDoc(cleintDoc, { picture: url })
-            })
+      uploadBytes(imageRef, selected)
+        .then(() => {
+          getDownloadURL(imageRef).then((url) => {
+            updateDoc(cleintDoc, { picture: url })
           })
-          .then()
-        if (Name === '') {
-          ErrMsg('Fill the required fields!')
-        } else if (Email === '') {
-          ErrMsg('Fill the required fields!')
-        } else if (Mobile === '') {
-          ErrMsg('Please select an album category!')
-        } else {
-          const newData = {
-            name: Name,
-            email: Email,
-            mobile: Mobile,
-            picture: ImageURL,
-          }
-
-          await updateDoc(cleintDoc, newData).then(navigate('/client-profile'))
+        })
+        .then()
+      if (Name === '') {
+        ErrMsg('Fill the required fields!')
+      } else if (Email === '') {
+        ErrMsg('Fill the required fields!')
+      } else if (Mobile === '') {
+        ErrMsg('Please select an album category!')
+      } else {
+        const newData = {
+          name: Name,
+          email: Email,
+          mobile: Mobile,
+          picture: ImageURL,
         }
+
+        await updateDoc(cleintDoc, newData).then(navigate('/client-profile'))
       }
     }
   }
@@ -222,6 +215,9 @@ function ClientProfileUpdateSub() {
                       label='Email'
                       value={Email}
                       InputLabelProps={{ shrink: true }}
+                      InputProps={{
+                        readOnly: true,
+                      }}
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </Grid>
