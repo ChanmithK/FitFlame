@@ -100,7 +100,7 @@ const BlogViewSubPage = () => {
               }}
               variant="contained"
               onClick={() =>
-                navigate("/blog/update", {
+                navigate("/admin/blog/update", {
                   state: {
                     id: blogData.id,
                     blogID: blogData.blogID,

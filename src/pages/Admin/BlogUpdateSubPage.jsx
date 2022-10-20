@@ -33,7 +33,7 @@ const BlogUpdateSubPage = () => {
               updateDoc(doc(db, "blogs", location.state.id), {
                 title: title,
                 content: content,
-              }).then(() => navigate("/blog"));
+              }).then(() => navigate("/admin/blog"));
             } catch (err) {
               alert(err);
             }
