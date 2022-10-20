@@ -194,6 +194,7 @@ function TrainerDetailsSubPage() {
                           mobile: data.mobile,
                           email: data.email,
                           programme: row.name,
+                          price: row.price,
                         },
                       });
                     }}
