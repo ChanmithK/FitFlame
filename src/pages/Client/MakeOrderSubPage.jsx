@@ -30,6 +30,7 @@ function MakeOrderSubPage() {
   const trainerMobile = location.state.mobile;
   const trainerEmail = location.state.email;
   const selectedProgramme = location.state.programme;
+  const price = location.state.price;
   const [data, setData] = useState("");
 
   const [weight, setWeight] = useState("");
@@ -86,9 +87,10 @@ function MakeOrderSubPage() {
                 trainerId: trainerId,
                 date: currentDate,
                 clientId: data.user,
-                clinetName: data.name,
+                clientName: data.name,
                 email: data.email,
                 phone: data.mobile,
+                price: price,
                 status: "pending",
                 orderId: Math.floor(1000 + Math.random() * 9000),
               });

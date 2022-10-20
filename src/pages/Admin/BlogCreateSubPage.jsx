@@ -73,7 +73,7 @@ const BlogCreateSubPage = () => {
                         blogID: Math.floor(10000 + Math.random() * 90000),
                       });
                     })
-                    .then(() => navigate("/blog"));
+                    .then(() => navigate("/admin/blog"));
                 });
               } catch (err) {
                 alert(err);
