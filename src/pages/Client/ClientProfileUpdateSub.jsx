@@ -69,30 +69,33 @@ function ClientProfileUpdateSub() {
     } else if (selected !== '' && imagePreview === null) {
       ErrMsg('Something wrong with the image preview')
     } else {
-      //handle image upload and then update the document
       const imageRef = ref(storage, `cleintProfile/${selected.name}`)
-      uploadBytes(imageRef, selected)
-        .then(() => {
-          getDownloadURL(imageRef).then((url) => {
-            updateDoc(cleintDoc, { picture: url })
-          })
-        })
-        .then()
-      if (Name === '') {
-        ErrMsg('Fill the required fields!')
-      } else if (Email === '') {
-        ErrMsg('Fill the required fields!')
-      } else if (Mobile === '') {
-        ErrMsg('Please select an album category!')
+      if (selected === '') {
+        ErrMsg('Cover image must be added!')
       } else {
-        const newData = {
-          name: Name,
-          email: Email,
-          mobile: Mobile,
-          picture: ImageURL,
-        }
+        uploadBytes(imageRef, selected)
+          .then(() => {
+            getDownloadURL(imageRef).then((url) => {
+              updateDoc(cleintDoc, { picture: url })
+            })
+          })
+          .then()
+        if (Name === '') {
+          ErrMsg('Fill the required fields!')
+        } else if (Email === '') {
+          ErrMsg('Fill the required fields!')
+        } else if (Mobile === '') {
+          ErrMsg('Please select an album category!')
+        } else {
+          const newData = {
+            name: Name,
+            email: Email,
+            mobile: Mobile,
+            picture: ImageURL,
+          }
 
-        await updateDoc(cleintDoc, newData).then(navigate('/client-profile'))
+          await updateDoc(cleintDoc, newData).then(navigate('/client-profile'))
+        }
       }
     }
   }
@@ -215,9 +218,6 @@ function ClientProfileUpdateSub() {
                       label='Email'
                       value={Email}
                       InputLabelProps={{ shrink: true }}
-                      InputProps={{
-                        readOnly: true,
-                      }}
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </Grid>
