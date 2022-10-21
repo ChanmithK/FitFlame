@@ -7,9 +7,9 @@ posts published by admins. Apart from them, both clients and gym instructors can
 profiles.
 Besides, all the users (clients, trainers, and admins) can generate reports that are useful for them.
 
-##Run the Application
+## Run the Application
 
-#`yarn start`
+# `yarn start`
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in your browser.
 
