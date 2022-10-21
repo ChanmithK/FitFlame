@@ -17,6 +17,9 @@ Besides, all the users (clients, trainers, and admins) can generate reports that
 
 ## Technologies
 Frontend - ReactJS
+
 Backend and DB - Firebase
+
 Style Component Library - Material UI
+
 Version Control - Github
