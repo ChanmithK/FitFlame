@@ -5,6 +5,7 @@ interact. After creating an account, clients can view coaching packages that tra
 if the clients are interested, they can purchase the preferred package. And also, clients can view blog 
 posts published by admins. Apart from them, both clients and gym instructors can manage their 
 profiles.
+
 Besides, all the users (clients, trainers, and admins) can generate reports that are useful for them.
 
 ## Run the Application
@@ -19,15 +20,21 @@ You may also see any lint errors in the console.
 ## Users & Features
 # Client
 Manage orders
+
 Manage profile
+
 View trainer packages
 
 # Trainer
 Mangae trainer profile
+
 Manage coaching packages
+
 View orders
+
 Create personal workout plans
 
 # Admin
 Manage blog articles
+
 View users
