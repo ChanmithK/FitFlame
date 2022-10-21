@@ -15,3 +15,19 @@ Open http://localhost:3000 to view it in your browser.
 
 The page will reload when you make changes.
 You may also see any lint errors in the console.
+
+## Users & Features
+# Client
+Manage orders
+Manage profile
+View trainer packages
+
+# Trainer
+Mangae trainer profile
+Manage coaching packages
+View orders
+Create personal workout plans
+
+# Admin
+Manage blog articles
+View users
